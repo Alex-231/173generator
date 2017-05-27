@@ -42,6 +42,7 @@ public class RegionFile {
         for (int i = 0; i < 1024; i++) {
             locations[i] = in.readInt();
         }
+        in.close();
         return locations;
     }
 

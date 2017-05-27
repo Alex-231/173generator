@@ -3,8 +3,6 @@ package com.github.barteks2x.b173gen.generator.populator;
 import com.github.barteks2x.b173gen.ISimpleWorld;
 import com.github.barteks2x.b173gen.generator.*;
 import com.github.barteks2x.b173gen.util.HeightDistrubution;
-import org.bukkit.World;
-
 import java.util.Random;
 
 public class RareUndergroundResource implements IPopulator {

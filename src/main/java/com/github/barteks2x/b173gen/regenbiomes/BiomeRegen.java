@@ -1,7 +1,6 @@
 package com.github.barteks2x.b173gen.regenbiomes;
 
 import com.github.barteks2x.b173gen.Generator;
-import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.command.CommandSender;
 import org.bukkit.scheduler.BukkitRunnable;

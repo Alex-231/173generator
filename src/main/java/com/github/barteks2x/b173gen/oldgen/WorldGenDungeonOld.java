@@ -6,6 +6,7 @@ import org.bukkit.DyeColor;
 import org.bukkit.Material;
 import org.bukkit.block.Chest;
 import org.bukkit.block.CreatureSpawner;
+import org.bukkit.entity.EntityType;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.material.Dye;
@@ -121,7 +122,7 @@ public class WorldGenDungeonOld implements WorldGenerator173 {
         w.setType(xPos, yPos, zPos, Material.MOB_SPAWNER);
         CreatureSpawner tileentitymobspawner = (CreatureSpawner) w.getBlockState(xPos, yPos, zPos);
 
-        tileentitymobspawner.setCreatureTypeByName(this.getRandomMob(random));
+        tileentitymobspawner.setSpawnedType(EntityType.valueOf(this.getRandomMob(random).toUpperCase()));
         return true;
     }
 

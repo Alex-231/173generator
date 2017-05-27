@@ -1,12 +1,7 @@
 package com.github.barteks2x.b173gen;
 
-import static com.comphenix.protocol.utility.MinecraftVersion.*;
-import com.comphenix.protocol.utility.MinecraftVersion;
 import java.util.logging.Level;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import org.bukkit.Bukkit;
-import org.bukkit.Server;
 
 public class VersionChecker {
     private static final String[] KNOWN_VERSIONS = new String[] {

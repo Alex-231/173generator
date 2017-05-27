@@ -4,8 +4,6 @@ import com.github.barteks2x.b173gen.Generator;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Collection;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.logging.Level;
 import org.bukkit.scheduler.BukkitRunnable;
 

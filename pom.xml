@@ -9,26 +9,27 @@
         <!--Special git describe version allows for empty prefix & suffix-->
         <gitdescribe-prefix></gitdescribe-prefix>
         <gitdescribe-suffix></gitdescribe-suffix>
-        <protocolLibVersion>4.0.2</protocolLibVersion>
+         <protocolLibVersion>4.2.1</protocolLibVersion>
     </properties>
     <dependencies>
-        <dependency>
-            <groupId>org.bukkit</groupId>
-            <artifactId>bukkit</artifactId>
-            <version>1.10.2-R0.1-SNAPSHOT</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.bukkit</groupId>
-            <artifactId>craftbukkit</artifactId>
-            <version>1.10.2-R0.1-SNAPSHOT</version>
-            <scope>runtime</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.comphenix.protocol</groupId>
-            <artifactId>ProtocolLib</artifactId>
-            <version>${protocolLibVersion}</version>
-        </dependency>
+	    <dependency>
+	    	<groupId>org.spigotmc</groupId>
+	    	<artifactId>spigot-api</artifactId>
+	    	<version>1.11.2-R0.1-SNAPSHOT</version>
+	    	<scope>provided</scope>
+	    </dependency>
+	    <dependency>
+	    	<groupId>org.bukkit</groupId>
+	    	<artifactId>craftbukkit</artifactId>
+	    	<version>1.11.2-R0.1-SNAPSHOT</version>
+	    	<scope>provided</scope>
+	    </dependency>
+		  <dependency>
+		    <groupId>com.comphenix.protocol</groupId>
+		    <artifactId>ProtocolLib-API</artifactId>
+		    <version>4.2.1</version>
+		    <scope>compile</scope>
+		  </dependency>
         <dependency>
             <groupId>com.flowpowered</groupId>
             <artifactId>flow-nbt</artifactId>
@@ -148,19 +149,22 @@
     <!--Repositories-->
     <repositories>
         <!--Bukkitrepository-->
-        <repository>
-            <id>Bukkit</id>
-            <name>Bukkit Repository</name>
-            <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
-        </repository>
-        <repository>
-            <id>dmulloy2-repo</id>
-            <url>http://repo.dmulloy2.net/content/groups/public/</url>
-        </repository>
+	   	<repository>
+	       	<id>spigot-repo</id>
+	       	<url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
+	   	</repository>
+		<repository>
+	            <id>bukkit-repo</id>
+	            <url>http://repo.bukkit.org/content/groups/public/</url>
+		</repository>
         <repository>
             <id>sonatype-nexus</id>
             <url>https://oss.sonatype.org/content/groups/public</url>
         </repository>
+          <repository>
+		    <id>dmulloy2-repo</id>
+		    <url>http://repo.dmulloy2.net/nexus/repository/public/</url>
+		  </repository>
     </repositories>
 	
     <!--Plugin repositories-->

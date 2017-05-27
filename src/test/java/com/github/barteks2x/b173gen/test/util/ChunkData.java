@@ -6,12 +6,12 @@ import org.bukkit.material.MaterialData;
 
 public class ChunkData implements ChunkGenerator.ChunkData{
     private final RegionChunkPosition position;
-    private final byte[] blockIds;
+    private final Material[] blockMaterials;
     private final byte[] metadata;
     private boolean populated;
 
     private ChunkData(Builder builder) {
-        this.blockIds = builder.blockIds;
+        this.blockMaterials = builder.blockMaterials;
         this.metadata = builder.metadata;
         this.position = builder.regionChunkPosition;
     }
@@ -21,7 +21,7 @@ public class ChunkData implements ChunkGenerator.ChunkData{
     }
 
     public static ChunkData empty(int x, int z) {
-        return builder().setData(new byte[16*16*128], new byte[16*16*128/2]).setPosition(RegionChunkPosition.fromChunkPos(x, z)).build();
+        return builder().setData(new Material[16*16*128], new byte[16*16*128/2]).setPosition(RegionChunkPosition.fromChunkPos(x, z)).build();
     }
 
     public int getX() {
@@ -37,7 +37,7 @@ public class ChunkData implements ChunkGenerator.ChunkData{
             return Material.AIR;
         }
         int pos = y | z << 7 | x << 11;
-        return Material.getMaterial(blockIds[pos] & 0xFF);
+        return blockMaterials[pos];
     }
 
     public RegionChunkPosition getPosition() {
@@ -55,7 +55,7 @@ public class ChunkData implements ChunkGenerator.ChunkData{
             return;
         }
         int pos = y | z << 7 | x << 11;
-        blockIds[pos] = (byte) material.getId();
+        blockMaterials[pos] = material;
     }
 
     @Override
@@ -113,8 +113,8 @@ public class ChunkData implements ChunkGenerator.ChunkData{
         throw new UnsupportedOperationException("Not implemented");
     }
 
-    public byte[] getIdrray() {
-        return this.blockIds;
+    public Material[] getIdrray() {
+        return this.blockMaterials;
     }
 
     public boolean isPopulated() {
@@ -127,7 +127,7 @@ public class ChunkData implements ChunkGenerator.ChunkData{
 
     public static class Builder {
         private RegionChunkPosition regionChunkPosition;
-        private byte[] blockIds;
+        private Material[] blockMaterials;
         private byte[] metadata;
 
         public Builder setPosition(RegionChunkPosition regionChunkPosition) {
@@ -138,8 +138,8 @@ public class ChunkData implements ChunkGenerator.ChunkData{
             return new ChunkData(this);
         }
 
-        public Builder setData(byte[] blockIds, byte[] metadata) {
-            this.blockIds = blockIds;
+        public Builder setData(Material[] blockIds, byte[] metadata) {
+            this.blockMaterials = blockIds;
             this.metadata = metadata;
             return this;
         }
