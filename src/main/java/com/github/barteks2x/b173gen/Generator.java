@@ -90,10 +90,10 @@ public class Generator extends JavaPlugin {
 		}
 		return worlds.get(name);
 	}
-	
-	public WorldConfig getWorldConfig(String name)
+
+	public boolean worldConfigExists(String name)
 	{
-		return worlds.get(name);
+		return worlds.containsKey(name);
 	}
 
 	@Override

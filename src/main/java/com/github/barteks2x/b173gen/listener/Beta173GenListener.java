@@ -47,28 +47,32 @@ public class Beta173GenListener implements Listener {
         Location loc = event.getLocation();
         World world = loc.getWorld();
         WorldConfig cfg;
-        if((cfg = plugin.getOrCreateWorldConfig(world.getName())) != null) {
-            if(cfg.oldTreeGrowing) {
-                //hack from b 1.7.3: temporarily set sapling block to air to allow tree to generate
-                BlockState prevState = loc.getBlock().getState();
-                loc.getBlock().setType(Material.AIR);
-                BlockCollectingWorld fakeWorld = new BlockCollectingWorld(loc.getWorld());
-                GrowthResult result = growTree(event.getSpecies(), loc, fakeWorld);
-                switch(result) {
-                    case SUCCESS:
-                        event.getBlocks().clear();
-                        event.getBlocks().addAll(fakeWorld.newStates.values());
-                        break;
-                    case FAIL:
-                        event.setCancelled(true);
-                        //fall-through
-                    case IGNORE:
-                        if(!prevState.update(true)) {
-                            Generator.logger().severe("Couldn't reset sapling block after failed tree generation at " + loc);
-                        }
-                        break;
-                }
-            }
+        
+        if(plugin.worldConfigExists(world.getName()))
+        {
+	        if((cfg = plugin.getOrCreateWorldConfig(world.getName())) != null) {
+	            if(cfg.oldTreeGrowing) {
+	                //hack from b 1.7.3: temporarily set sapling block to air to allow tree to generate
+	                BlockState prevState = loc.getBlock().getState();
+	                loc.getBlock().setType(Material.AIR);
+	                BlockCollectingWorld fakeWorld = new BlockCollectingWorld(loc.getWorld());
+	                GrowthResult result = growTree(event.getSpecies(), loc, fakeWorld);
+	                switch(result) {
+	                    case SUCCESS:
+	                        event.getBlocks().clear();
+	                        event.getBlocks().addAll(fakeWorld.newStates.values());
+	                        break;
+	                    case FAIL:
+	                        event.setCancelled(true);
+	                        //fall-through
+	                    case IGNORE:
+	                        if(!prevState.update(true)) {
+	                            Generator.logger().severe("Couldn't reset sapling block after failed tree generation at " + loc);
+	                        }
+	                        break;
+	                }
+	            }
+	        }
         }
     }
 
@@ -80,8 +84,8 @@ public class Beta173GenListener implements Listener {
         if(event.getItem().getType() == Material.EYE_OF_ENDER) {
             Player player = event.getPlayer();
             World world = player.getLocation().getWorld();
-            WorldConfig cfg;
-            if((cfg = plugin.getWorldConfig(world.getName())) != null) {
+            if(plugin.worldConfigExists(world.getName())) {
+            	WorldConfig cfg = plugin.getOrCreateWorldConfig(world.getName());
                 event.setCancelled(true);
                 player.sendMessage(cfg.eyeOfEnderMsg);
             }
