@@ -4,6 +4,7 @@ import com.flowpowered.nbt.CompoundTag;
 import com.flowpowered.nbt.stream.NBTInputStream;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.zip.DataFormatException;
 import java.util.zip.Inflater;
@@ -46,16 +47,18 @@ public class RegionChunk {
 
             ChunkData.Builder builder = ChunkData.builder();
             builder.setPosition(regionChunkPosition);
-            Byte[] blockIdsLsb = (Byte[]) level.getValue().get("Blocks").getValue();
+            byte[] blockIdsLsb = (byte[]) level.getValue().get("Blocks").getValue();
             
-            List<Material> materials = null;
-            for(Byte blockId :  blockIdsLsb)
+            List<Material> materials = new ArrayList();
+            for(byte blockId :  blockIdsLsb)
             {
             	materials.add(Material.getMaterial(blockId));
             }
             
             byte[] metadata = (byte[]) level.getValue().get("Data").getValue();
-            builder.setData((Material[])(materials.toArray()), metadata);
+            
+            Material[] arr = {};
+            builder.setData(materials.toArray(arr), metadata);
 
             return builder.build();
 

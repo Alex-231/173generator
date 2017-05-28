@@ -90,6 +90,11 @@ public class Generator extends JavaPlugin {
 		}
 		return worlds.get(name);
 	}
+	
+	public WorldConfig getWorldConfig(String name)
+	{
+		return worlds.get(name);
+	}
 
 	@Override
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {

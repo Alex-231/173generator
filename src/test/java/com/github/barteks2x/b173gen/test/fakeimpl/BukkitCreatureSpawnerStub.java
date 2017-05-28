@@ -20,15 +20,15 @@ class BukkitCreatureSpawnerStub implements CreatureSpawner {
     public void setCreatureTypeByName(String s) {
         this.creatureType = EntityType.valueOf(s.toUpperCase());
     }
+    
+    @Override
+    public void setSpawnedType(EntityType entityType) {
+        this.creatureType = entityType;
+    }
 
     //UNIMPLEMENTED:
     @Override
     public EntityType getSpawnedType() {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public void setSpawnedType(EntityType entityType) {
         throw new UnsupportedOperationException();
     }
 
