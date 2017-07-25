@@ -60,6 +60,8 @@ public class RegionChunk {
             Material[] arr = {};
             builder.setData(materials.toArray(arr), metadata);
 
+            nbtIn.close();
+            
             return builder.build();
 
     }
